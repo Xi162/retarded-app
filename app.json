@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "retarded-app",
+    "slug": "retarded-app",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "retarded-app"
+}
