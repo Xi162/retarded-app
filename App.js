@@ -6,17 +6,30 @@ import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity,
 
 const UselessTextInput = () => {
   const [text, onChangeText] = React.useState('');
-  
-  const textHandler = () =>{
-    onChangeText(text)
+  const [input, setInput] = React.useState([])
+
+  const textHandler = (enteredText) =>{
+    onChangeText(enteredText)
+  }
+
+  const inputHandler = () => {
+    setInput(currentInput => [...input, text])
   }
   
   return (
     <View style = {styles.container}>
+      
       <View style = {styles.inputzone}> 
-      <TextInput style={styles.input} onChangeText={onChangeText} value={text} />
-      <Button title = "ADD" onPress ={()=> Alert.alert("Press!","Please press OK")} />
+      <TextInput style={styles.input} onChangeText={onChangeText}/>
+      <Button title = "ADD" onPress ={inputHandler} />
       </View>
+      <ScrollView style = {styles.bar}>
+          {input.map( (textInput) => 
+          <View  key = {textInput} style = {styles.addlist}>
+            <Text >{textInput}</Text> 
+          </View>
+           )}
+        </ScrollView>
     </View>
   );
 };
@@ -29,15 +42,31 @@ const styles = StyleSheet.create({
   },
   container:{
     flex:1,  
-    flexDirection:'column',
-    justifyContent: 'flex-end'
+    flexDirection:'column-reverse',
+    justifyContent: 'space-between'
   },
   inputzone:{
     marginBottom: "30%",
     flexDirection: 'column',
     justifyContent:'space-around',
     alignItems:'center',
+  },
+  bar:{
+    margin: "10%",
+    marginTop: "20%",
+    borderWidth: 2,
+    backgroundColor: '#CCFF66'
+
+  },
+  addlist:{
+    justifyContent: 'center',
+    alignItems:'center',
+    borderWidth: 1,
+    padding: "10%",
+    margin: "2.5%",
+    backgroundColor:'#66FF33'
   }
+
 });
 
 export default UselessTextInput;
